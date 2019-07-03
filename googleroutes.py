@@ -11,6 +11,7 @@ Fetch these details from DynamoDB
 start_address = "Grexter La Vie"
 dest_address = "RBS RMZ Bengaluru"
 
+link = "https://www.google.com/maps/dir/?api=1&origin=" + start_address + "&destination=" + dest_address + "&travelmode=driving"
 
 now = datetime.now()
 dept_time = now
@@ -39,7 +40,6 @@ def fetchDetails(directions_result):
     dist = directions_result[0]['legs'][0]['distance']['text']
     #Fetching travel time
     time = directions_result[0]['legs'][0]['duration_in_traffic']['text']
-    
     return [dist, time, start_lat,start_lng, end_lat,end_lng]
 
 def gmapsQuery(start_address, dest_address, mode, departure_time):
