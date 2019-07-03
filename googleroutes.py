@@ -10,19 +10,19 @@ Fetch these details from DynamoDB
 #Initialise 
 start_address = "Grexter La Vie"
 dest_address = "RBS RMZ Bengaluru"
-mode = "driving"
+
 
 now = datetime.now()
 dept_time = now
 
-tm = str("13:00")
+tm = str("1300")
 
 
 def timeConvert(tm):
     
     now = datetime.datetime.now()
     tm = str(now.year) + " " + str(now.month) + " " + str(now.day) + " " + tm
-    newdm = datetime.datetime.strptime(tm, '%Y %m %d %H:%M')
+    newdm = datetime.datetime.strptime(tm, '%Y %m %d %H%M')
     return newdm
 
 
@@ -40,23 +40,23 @@ def fetchDetails(directions_result):
     #Fetching travel time
     time = directions_result[0]['legs'][0]['duration_in_traffic']['text']
     
-    return dist, time, start_lat,start_lng, end_lat,end_lng
+    return [dist, time, start_lat,start_lng, end_lat,end_lng]
 
 def gmapsQuery(start_address, dest_address, mode, departure_time):
-    return gmaps.directions(start_address,dest_address,mode=mode,departure_time=dept_time)
+    return gmaps.directions(start_address,dest_address,mode=mode,departure_time=departure_time)
 
 
-def lambda_handler(event, context):
-    """
-    Entry point for Python Lambda Function
-	Arguments:
-		event {[type]} -- [description]
-		context {[type]} -- [description]
-	""" 
+# def lambda_handler(event, context):
+#     """
+#     Entry point for Python Lambda Function
+# 	Arguments:
+# 		event {[type]} -- [description]
+# 		context {[type]} -- [description]
+# 	""" 
     
-    directions_result = gmapsQuery(start_address,dest_address,mode=mode,departure_time=dept_time) 
-    dist, time, start_lat,start_lng, end_lat,end_lng = fetchDetails(directions_result)
-    print(dist, time, start_lat,start_lng, end_lat,end_lng)
+#     directions_result = gmapsQuery(start_address,dest_address,mode=mode,departure_time=dept_time) 
+#     dist, time, start_lat,start_lng, end_lat,end_lng = fetchDetails(directions_result)
+#     print(dist, time, start_lat,start_lng, end_lat,end_lng)
     
 
 
