@@ -1,7 +1,7 @@
 import googlemaps
 import datetime
-GMAPS_API_KEY = "AIzaSyAzu_JmuQ-pOJ-skgrPJRbs97D0bESDkKQ"
-gmaps = googlemaps.Client(key='AIzaSyAzu_JmuQ-pOJ-skgrPJRbs97D0bESDkKQ')
+GMAPS_API_KEY = "AIzaSyAzu_s97D0bESDkKQ"
+gmaps = googlemaps.Client(key=GMAPS_API_KEY)
 
 """
 Fetch these details from DynamoDB
