@@ -1,5 +1,7 @@
 import requests
 import json
+import boto3
+import googlemaps
 
 APIKEY = 'c031ff79d81c1f77c4331df2ac93ed4b'
 
@@ -69,9 +71,21 @@ def create_sns_message(weather):
 	Arguments:
 		weather {[type]} -- [description]
 	"""
-	message = "Current Weather is {}. <b>description<b> {}".format(weather['main'],weather['description'])
+	message = "Current Weather is {}. <b>description</b> {}".format(weather['main'],weather['description'])
 	send_sns_message(message)
 
+def query_dynamodb():
+	"""[summary]
+	
+	[description]
+	"""
+	dynamodb = boto3.resource('dynamodb')
+
+	response = dynamodb.scan(
+		TableName='employees'
+		)
+	print(response)
+	
 
 def lambda_handler(event, context):
 	"""Entry point for Python Lambda Function
