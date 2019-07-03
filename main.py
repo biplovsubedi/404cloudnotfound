@@ -40,6 +40,39 @@ def get_weather(latitude,longitude):
 
 	return res['weather'][0]
 
+def send_sns_message(message):
+	"""[summary]
+	
+	[description]
+	
+	Arguments:
+		message {[type]} -- [description]
+	"""
+	# Create an SNS client
+	sns = boto3.client('sns')
+
+	# Publish a simple message to the specified SNS topic
+	response = sns.publish(
+	    TopicArn='arn:aws:sns:ap-south-1:443236223987:WeatherNotification',    
+	    Message=message,    
+	)
+
+	# Print out the response
+	print(response)
+
+
+def create_sns_message(weather):
+	"""[summary]
+	
+	[description]
+	
+	Arguments:
+		weather {[type]} -- [description]
+	"""
+	message = "Current Weather is {}. <b>description<b> {}".format(weather['main'],weather['description'])
+	send_sns_message(message)
+
+
 def lambda_handler(event, context):
 	"""Entry point for Python Lambda Function
 
@@ -57,3 +90,4 @@ def lambda_handler(event, context):
 	print(w_id, w_main, w_desc)
 	## TODO -- ADD SNS response here
 	
+	create_sns_message(weather)
