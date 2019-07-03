@@ -7,6 +7,7 @@ from googleroutes import fetchDetails,timeConvert,gmapsQuery
 
 APIKEY = 'c031ff79d81c1f77c4331df2ac93ed4b'
 
+map_link = "https://www.google.com/maps/dir/?api=1&origin={}&destination={}&travelmode=driving"
 
 LATITUDE='12.9716'
 LONGITUDE ='77.5946'
@@ -139,9 +140,12 @@ def process_all_users():
         #Home Weather
         home_weather = get_weather(all_results[2],all_results[3])
 
-        final_message = weather_status(emp_name, home_weather, all_results[1], all_results[0])
+        weather_message = weather_status(emp_name, home_weather, all_results[1], all_results[0])
         #print("Home weather status", home_weather_status)
 
+        map_link_final = map_link.format(home_loc.replace(' ','+'), office_loc.replace(' ','+'))
+
+        final_message = weather_message + '\n\n' + "Here's the link for the quickest travel!! " + map_link_final
         print(final_message)
 
         ################3
