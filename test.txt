@@ -1,1 +1,5 @@
 https://new-bucket-airflow.s3.ap-south-1.amazonaws.com/pip-cache.zip
+
+https://new-bucket-airflow.s3.ap-south-1.amazonaws.com/packages.zip
+
+https://new-bucket-airflow.s3.ap-south-1.amazonaws.com/airflow_all.zip
